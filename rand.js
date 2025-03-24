@@ -1,7 +1,8 @@
+
 // ==UserScript==
 // @name         rand
 // @namespace    none
-// @version      v1.0-alpha1
+// @version      v1.0-alpha1.1
 // @description  try to take over the world, but with randomness!
 // @author       ccjt
 // @match        http://multiplayerpiano.*/*
@@ -10,14 +11,14 @@
 // ==/UserScript==
 
 MPP.client.on("a", function (msg) {
-    let args = m.a.split(" ");
+    let args = msg.a.split(" ");
     let cmd = args[0].toLowerCase();
 
-    if (cmd == "stddice") {
+    if (cmd == "dice") {
         MPP.chat.send(Math.floor(Math.random() * (6 - 1 + 1) + 6))
     }
     if (cmd == "rand") {
-        if (args.length <= 1) {
+        if (args.length == 1 || args.length == 0) {
             MPP.chat.send("please specify 2 values *exactly!*")
             MPP.chat.send("example: rand 1 6")
             MPP.chat.send("^ this will pick a **random** number between from *1* to *6*")
